@@ -1,8 +1,13 @@
-/Users/kkukielka/Desktop/json/src/main/java/gson_json/model/Duke.java
 /Users/kkukielka/Desktop/json/src/main/java/gson_json/model/PhoneNumber.java
+/Users/kkukielka/Desktop/json/src/main/java/json_placeholder_model/request/PostRequest.java
+/Users/kkukielka/Desktop/json/src/main/java/gson_json/json/JsonHelper.java
+/Users/kkukielka/Desktop/json/src/main/java/json_placeholder_apache_service/Client.java
+/Users/kkukielka/Desktop/json/src/main/java/json_placeholder_model/response/PostResponse.java
 /Users/kkukielka/Desktop/json/src/main/java/javax_json/model/PhoneNumber.java
 /Users/kkukielka/Desktop/json/src/main/java/gson_json/GsonMain.java
-/Users/kkukielka/Desktop/json/src/main/java/javax_json/json/JSONReaderHelper.java
-/Users/kkukielka/Desktop/json/src/main/java/javax_json/JavaxMain.java
-/Users/kkukielka/Desktop/json/src/main/java/gson_json/json/JsonReaderHelper.java
+/Users/kkukielka/Desktop/json/src/main/java/json_placeholder_model/response/ToDo.java
 /Users/kkukielka/Desktop/json/src/main/java/javax_json/model/Duke.java
+/Users/kkukielka/Desktop/json/src/main/java/javax_json/json/JSONReaderHelper.java
+/Users/kkukielka/Desktop/json/src/main/java/gson_json/model/Person.java
+/Users/kkukielka/Desktop/json/src/main/java/javax_json/JavaxMain.java
+/Users/kkukielka/Desktop/json/src/main/java/Main.java
