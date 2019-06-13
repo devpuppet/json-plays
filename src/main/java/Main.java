@@ -2,6 +2,7 @@ import json_placeholder_apache_service.Client;
 import json_placeholder_model.request.CommentRequest;
 import json_placeholder_model.request.PostRequest;
 import json_placeholder_model.response.CommentResponse;
+import json_placeholder_model.response.PhotoResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.ToDo;
 
@@ -45,6 +46,10 @@ public class Main {
 
         // get all comments for post
         List<CommentResponse> comments = client.getCommentsForPost("3");
+
+        // get photo
+        PhotoResponse photoResponse = client.getPhoto("4");
+        BrowserHelper.openURL(photoResponse.getUrl());
 
         System.out.println(toDo);
 

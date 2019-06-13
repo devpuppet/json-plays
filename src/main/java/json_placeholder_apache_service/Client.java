@@ -4,6 +4,7 @@ import gson_json.json.JsonHelper;
 import json_placeholder_model.request.CommentRequest;
 import json_placeholder_model.request.PostRequest;
 import json_placeholder_model.response.CommentResponse;
+import json_placeholder_model.response.PhotoResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.ToDo;
 import org.apache.http.HttpEntity;
@@ -30,6 +31,7 @@ public class Client {
     private static final String TO_DO_RESOURCE_URL = "/todos/";
     private static final String POST_RESOURCE_URL = "/posts";
     private static final String COMMENT_RESOURCE_URL = "/comments/";
+    private static final String PHOTO_RESOURCE_URL = "/photos";
     private HttpHost host = new HttpHost(HOST);
     private JsonHelper jsonHelper = new JsonHelper();
 
@@ -123,6 +125,12 @@ public class Client {
         String response = sendRequest(getRequest);
         CommentResponse[] comments = jsonHelper.parseJsonToObject(response, CommentResponse[].class);
         return Arrays.asList(comments);
+    }
+
+    public PhotoResponse getPhoto(String photoId) {
+        HttpGet getRequest = new HttpGet(PHOTO_RESOURCE_URL + "/" + photoId);
+        String response = sendRequest(getRequest);
+        return jsonHelper.parseJsonToObject(response, PhotoResponse.class);
     }
 
 }
