@@ -12,7 +12,8 @@ public class JsonHelper {
         builder = new GsonBuilder();
         gson = builder
                 .setPrettyPrinting()
-                .excludeFieldsWithoutExposeAnnotation().create();
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
     }
 
     public <T> T parseJsonToObject(String json, Class<T> classOfT) {

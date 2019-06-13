@@ -1,5 +1,7 @@
 import json_placeholder_apache_service.Client;
+import json_placeholder_model.request.CommentRequest;
 import json_placeholder_model.request.PostRequest;
+import json_placeholder_model.response.CommentResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.ToDo;
 
@@ -23,7 +25,17 @@ public class Main {
                 .withBody("test post")
                 .withUserId(107)
                 .build();
-        PostResponse post = client.createNewPost(postRequest);
+        PostResponse postResponse = client.createNewPost(postRequest);
+
+        // update comment
+        CommentRequest commentRequest = new CommentRequest.Builder()
+                .withBody("Comment update test")
+                .withEmail("abc@gmail.com")
+                .withId(107)
+                .withName("Batman")
+                .withPostId(167)
+                .build();
+        CommentResponse putResponse = client.updateComment(commentRequest);
 
         System.out.println(toDo);
 

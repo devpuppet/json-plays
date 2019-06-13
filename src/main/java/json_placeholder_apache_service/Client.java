@@ -1,7 +1,9 @@
 package json_placeholder_apache_service;
 
 import gson_json.json.JsonHelper;
+import json_placeholder_model.request.CommentRequest;
 import json_placeholder_model.request.PostRequest;
+import json_placeholder_model.response.CommentResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.ToDo;
 import org.apache.http.HttpEntity;
@@ -10,6 +12,7 @@ import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -24,7 +27,8 @@ public class Client {
 
     private static final String HOST = "jsonplaceholder.typicode.com";
     private static final String TO_DO_RESOURCE_URL = "/todos/";
-    private static final String POST_RESOURCE_URL = "/posts";
+    private static final String POST_RESOURCE_URL = "/posts/";
+    private static final String COMMENT_RESOURCE_URL = "/comments/";
     private HttpHost host = new HttpHost(HOST);
     private JsonHelper jsonHelper = new JsonHelper();
 
@@ -76,6 +80,26 @@ public class Client {
         }
 
         return jsonHelper.parseJsonToObject(response, PostResponse.class);
+    }
+
+    public CommentResponse updateComment(CommentRequest request) {
+        String json = jsonHelper.parseObjectToJson(request);
+        String response = null;
+
+        try {
+
+            StringEntity entity = new StringEntity(json);
+            HttpPut putRequest = new HttpPut();
+            putRequest.setEntity(entity);
+            putRequest.setURI(URI.create(COMMENT_RESOURCE_URL + request.getId()));
+            putRequest.setHeader("Content-type", "application/json; charset=UTF-8");
+            response = sendRequest(putRequest);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return jsonHelper.parseJsonToObject(response, CommentResponse.class);
     }
 
 }
