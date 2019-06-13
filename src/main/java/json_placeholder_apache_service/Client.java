@@ -118,4 +118,11 @@ public class Client {
         return sendRequest(deleteRequest);
     }
 
+    public List<CommentResponse> getCommentsForPost(String postId) {
+        HttpGet getRequest = new HttpGet(POST_RESOURCE_URL + "/" + postId + "/comments");
+        String response = sendRequest(getRequest);
+        CommentResponse[] comments = jsonHelper.parseJsonToObject(response, CommentResponse[].class);
+        return Arrays.asList(comments);
+    }
+
 }

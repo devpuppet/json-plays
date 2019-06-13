@@ -43,6 +43,9 @@ public class Main {
         // get post for user
         List<PostResponse> postForUser = client.getPostsForUserId("6");
 
+        // get all comments for post
+        List<CommentResponse> comments = client.getCommentsForPost("3");
+
         System.out.println(toDo);
 
     }
