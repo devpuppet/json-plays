@@ -37,6 +37,9 @@ public class Main {
                 .build();
         CommentResponse putResponse = client.updateComment(commentRequest);
 
+        // delete comment
+        String deleteResponse = client.deleteComment("4");
+
         System.out.println(toDo);
 
     }
