@@ -40,6 +40,9 @@ public class Main {
         // delete comment
         String deleteResponse = client.deleteComment("4");
 
+        // get post for user
+        List<PostResponse> postForUser = client.getPostsForUserId("6");
+
         System.out.println(toDo);
 
     }

@@ -28,7 +28,7 @@ public class Client {
 
     private static final String HOST = "jsonplaceholder.typicode.com";
     private static final String TO_DO_RESOURCE_URL = "/todos/";
-    private static final String POST_RESOURCE_URL = "/posts/";
+    private static final String POST_RESOURCE_URL = "/posts";
     private static final String COMMENT_RESOURCE_URL = "/comments/";
     private HttpHost host = new HttpHost(HOST);
     private JsonHelper jsonHelper = new JsonHelper();
@@ -81,6 +81,14 @@ public class Client {
         }
 
         return jsonHelper.parseJsonToObject(response, PostResponse.class);
+    }
+
+    public List<PostResponse> getPostsForUserId(String userId) {
+        HttpGet getRequest = new HttpGet();
+        getRequest.setURI(URI.create(POST_RESOURCE_URL + "?userId=" + userId));
+        String response = sendRequest(getRequest);
+        PostResponse[] posts = jsonHelper.parseJsonToObject(response, PostResponse[].class);
+        return Arrays.asList(posts);
     }
 
     public CommentResponse updateComment(CommentRequest request) {
