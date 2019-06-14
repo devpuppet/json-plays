@@ -1,5 +1,6 @@
 package json_placeholder_spring_service;
 
+import json_placeholder_model.request.PostRequest;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.PostsResponse;
 import org.springframework.http.*;
@@ -30,14 +31,18 @@ public class Client {
         entity = new HttpEntity<>("parameters", httpHeaders);
     }
 
-    private <T> T sendGetRequest(String uri, Class<T> responseType, Map<String, String> params) {
-        T response = restTemplate.getForObject(uri, responseType, params);
+    private <T> T sendGetRequest(String url, Class<T> responseType, Map<String, String> params) {
+        T response = restTemplate.getForObject(url, responseType, params);
         return response;
     }
 
-    private <T> T sendGetRequest(String uri, Class<T> responseType) {
-        T response = restTemplate.getForObject(uri, responseType);
+    private <T> T sendGetRequest(String url, Class<T> responseType) {
+        T response = restTemplate.getForObject(url, responseType);
         return response;
+    }
+
+    private <T> T sendPostRequest(String url, Object body, Class<T> responseType) {
+        return restTemplate.postForObject(url, body, responseType);
     }
 
     public PostResponse getPost(String postId) {
@@ -50,6 +55,10 @@ public class Client {
     public PostsResponse getAllPosts() {
         PostResponse[] response = sendGetRequest(POST_RESOURCE_URL, PostResponse[].class);
         return new PostsResponse(response);
+    }
+
+    public PostResponse createPost(PostRequest post) {
+        return sendPostRequest(POST_RESOURCE_URL, post, PostResponse.class);
     }
 
 }
