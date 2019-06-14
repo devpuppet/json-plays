@@ -1,10 +1,12 @@
-import json_placeholder_apache_service.Client;
+package json_placeholder_apache_service;
+
 import json_placeholder_model.request.CommentRequest;
 import json_placeholder_model.request.PostRequest;
 import json_placeholder_model.response.CommentResponse;
 import json_placeholder_model.response.PhotoResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.ToDo;
+import utils.BrowserHelper;
 
 import java.util.List;
 

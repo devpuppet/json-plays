@@ -2,6 +2,7 @@
 package json_placeholder_model.response;
 
 import com.google.gson.annotations.Expose;
+import gson_json.json.JsonHelper;
 
 @SuppressWarnings("unused")
 public class PostResponse {
@@ -45,6 +46,11 @@ public class PostResponse {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return new JsonHelper().parseObjectToJson(this);
     }
 
 }
