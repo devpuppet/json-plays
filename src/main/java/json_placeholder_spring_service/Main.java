@@ -1,8 +1,10 @@
 package json_placeholder_spring_service;
 
 import json_placeholder_model.request.PostRequest;
+import json_placeholder_model.response.PhotoResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.PostsResponse;
+import utils.BrowserHelper;
 
 public class Main {
 
@@ -34,6 +36,10 @@ public class Main {
 
         // delete post
         boolean isPostDeleted = service.deletePost("2");
+
+        // get photo
+        PhotoResponse photo = service.getPhoto("20");
+        BrowserHelper.openURL(photo.getUrl());
 
         System.out.println(posts.toString());
 

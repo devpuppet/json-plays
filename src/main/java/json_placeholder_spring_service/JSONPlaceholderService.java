@@ -1,6 +1,7 @@
 package json_placeholder_spring_service;
 
 import json_placeholder_model.request.PostRequest;
+import json_placeholder_model.response.PhotoResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.PostsResponse;
 import org.springframework.http.HttpMethod;
@@ -10,6 +11,8 @@ public class JSONPlaceholderService {
 
     private static final String POST_RESOURCE_URL =
             "https://jsonplaceholder.typicode.com/posts/";
+    private static final String PHOTO_RESOURCE_URL =
+            "https://jsonplaceholder.typicode.com/photos/";
 
     private Client client = new Client();
 
@@ -41,5 +44,11 @@ public class JSONPlaceholderService {
         ResponseEntity<PostResponse> response = client.sendRequest(POST_RESOURCE_URL + postId,
                 HttpMethod.DELETE, null, PostResponse.class);
         return response.getStatusCode().is2xxSuccessful();
+    }
+
+    public PhotoResponse getPhoto(String photoId) {
+        ResponseEntity<PhotoResponse> response = client.sendRequest(PHOTO_RESOURCE_URL + photoId,
+                HttpMethod.GET, null, PhotoResponse.class);
+        return response.getBody();
     }
 }
