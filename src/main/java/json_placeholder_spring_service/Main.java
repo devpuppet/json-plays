@@ -24,6 +24,14 @@ public class Main {
                 .build();
         PostResponse newPostResponse = service.createPost(newPost);
 
+        // update post
+        PostRequest updatedPost = new PostRequest.Builder()
+                .withBody("updated!")
+                .withTitle("updates v2")
+                .withUserId(1)
+                .build();
+        PostResponse updateResponse = service.updatePost("1", updatedPost);
+
         System.out.println(posts.toString());
 
     }

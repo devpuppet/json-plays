@@ -20,15 +20,20 @@ public class JSONPlaceholderService {
     }
 
     public PostsResponse getAllPosts() {
-        ResponseEntity<PostResponse[]> response = client.sendRequest(POST_RESOURCE_URL, HttpMethod.GET,
-                null, PostResponse[].class);
+        ResponseEntity<PostResponse[]> response = client.sendRequest(POST_RESOURCE_URL,
+                HttpMethod.GET, null, PostResponse[].class);
         return new PostsResponse(response.getBody());
     }
 
     public PostResponse createPost(PostRequest post) {
-        ResponseEntity<PostResponse> response = client.sendRequest(POST_RESOURCE_URL, HttpMethod.POST,
-                post, PostResponse.class);
+        ResponseEntity<PostResponse> response = client.sendRequest(POST_RESOURCE_URL,
+                HttpMethod.POST, post, PostResponse.class);
         return response.getBody();
     }
 
+    public PostResponse updatePost(String postId, PostRequest updatedPost) {
+        ResponseEntity<PostResponse> response = client.sendRequest(POST_RESOURCE_URL + postId,
+                HttpMethod.PUT, updatedPost, PostResponse.class);
+        return response.getBody();
+    }
 }

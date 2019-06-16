@@ -35,9 +35,9 @@ public class Client {
 
     }
 
-    public <ReqType, ResType> ResponseEntity<ResType> sendRequest(String url,
-                                                                   HttpMethod method, ReqType body,
-                                                                   Class<ResType> responseType) {
+    public <ReqType, ResType> ResponseEntity<ResType> sendRequest(
+            String url, HttpMethod method, ReqType body, Class<ResType> responseType) {
+
         HttpEntity<ReqType> entity = new HttpEntity<>(body, headers);
 
         return restTemplate.exchange(url, method, entity, responseType);
