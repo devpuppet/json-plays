@@ -1,64 +1,46 @@
 package json_placeholder_spring_service;
 
-import json_placeholder_model.request.PostRequest;
-import json_placeholder_model.response.PostResponse;
-import json_placeholder_model.response.PostsResponse;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.*;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.*;
+import javax.net.ssl.SSLContext;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 public class Client {
 
-    private static final String POST_RESOURCE_URL = "https://jsonplaceholder.typicode.com/posts/";
-
     private RestTemplate restTemplate;
-    private HttpEntity<String> entity;
+    private HttpHeaders headers;
 
     public Client() {
-        restTemplate = new RestTemplate();
+        headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-//        List<HttpMessageConverter<?>> converters = new ArrayList<>();
-//        MappingJacksonHttpMessageConverter converter = new MappingJacksonHttpMessageConverter();
-//        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
-//        converters.add(converter);
-//        restTemplate.setMessageConverters(converters);
+        try {
+            SSLContext context = SSLContext.getInstance("TLSv1.2");
+            context.init(null, null, null);
+            CloseableHttpClient httpClient = HttpClientBuilder.create()
+                    .setSSLContext(context).build();
+            HttpComponentsClientHttpRequestFactory factory
+                    = new HttpComponentsClientHttpRequestFactory(httpClient);
+            restTemplate = new RestTemplate(factory);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        entity = new HttpEntity<>("parameters", httpHeaders);
     }
 
-    private <T> T sendGetRequest(String url, Class<T> responseType, Map<String, String> params) {
-        T response = restTemplate.getForObject(url, responseType, params);
-        return response;
-    }
+    public <ReqType, ResType> ResponseEntity<ResType> sendRequest(String url,
+                                                                   HttpMethod method, ReqType body,
+                                                                   Class<ResType> responseType) {
+        HttpEntity<ReqType> entity = new HttpEntity<>(body, headers);
 
-    private <T> T sendGetRequest(String url, Class<T> responseType) {
-        T response = restTemplate.getForObject(url, responseType);
-        return response;
-    }
-
-    private <T> T sendPostRequest(String url, Object body, Class<T> responseType) {
-        return restTemplate.postForObject(url, body, responseType);
-    }
-
-    public PostResponse getPost(String postId) {
-        Map<String, String> params = new HashMap<>();
-        params.put("id", postId);
-
-        return sendGetRequest(POST_RESOURCE_URL + "{id}", PostResponse.class, params);
-    }
-
-    public PostsResponse getAllPosts() {
-        PostResponse[] response = sendGetRequest(POST_RESOURCE_URL, PostResponse[].class);
-        return new PostsResponse(response);
-    }
-
-    public PostResponse createPost(PostRequest post) {
-        return sendPostRequest(POST_RESOURCE_URL, post, PostResponse.class);
+        return restTemplate.exchange(url, method, entity, responseType);
     }
 
 }

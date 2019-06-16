@@ -8,13 +8,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Client client = new Client();
+        JSONPlaceholderService service = new JSONPlaceholderService();
 
         // get one post
-        PostResponse post = client.getPost("2");
+        PostResponse post = service.getPost("2");
 
         // get all posts
-        PostsResponse posts = client.getAllPosts();
+        PostsResponse posts = service.getAllPosts();
 
         // create new post
         PostRequest newPost = new PostRequest.Builder()
@@ -22,7 +22,7 @@ public class Main {
                 .withTitle("Brand new")
                 .withUserId(12)
                 .build();
-        PostResponse newPostResponse = client.createPost(newPost);
+        PostResponse newPostResponse = service.createPost(newPost);
 
         System.out.println(posts.toString());
 
