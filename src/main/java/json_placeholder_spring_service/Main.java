@@ -32,6 +32,9 @@ public class Main {
                 .build();
         PostResponse updateResponse = service.updatePost("1", updatedPost);
 
+        // delete post
+        boolean isPostDeleted = service.deletePost("2");
+
         System.out.println(posts.toString());
 
     }

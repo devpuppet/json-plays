@@ -36,4 +36,10 @@ public class JSONPlaceholderService {
                 HttpMethod.PUT, updatedPost, PostResponse.class);
         return response.getBody();
     }
+
+    public boolean deletePost(String postId) {
+        ResponseEntity<PostResponse> response = client.sendRequest(POST_RESOURCE_URL + postId,
+                HttpMethod.DELETE, null, PostResponse.class);
+        return response.getStatusCode().is2xxSuccessful();
+    }
 }
