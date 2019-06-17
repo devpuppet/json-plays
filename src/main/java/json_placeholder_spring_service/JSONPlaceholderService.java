@@ -51,4 +51,9 @@ public class JSONPlaceholderService {
                 HttpMethod.GET, null, PhotoResponse.class);
         return response.getBody();
     }
+
+    // this method is used for mockito practice
+    public PhotoResponse getPhotoWithColor(String color) {
+        return new PhotoResponse();
+    }
 }

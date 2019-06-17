@@ -7,9 +7,9 @@ import com.google.gson.annotations.Expose;
 public class PhotoResponse {
 
     @Expose
-    private Long albumId;
+    private Integer albumId;
     @Expose
-    private Long id;
+    private Integer id;
     @Expose
     private String thumbnailUrl;
     @Expose
@@ -17,19 +17,19 @@ public class PhotoResponse {
     @Expose
     private String url;
 
-    public Long getAlbumId() {
+    public Integer getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(Long albumId) {
+    public void setAlbumId(Integer albumId) {
         this.albumId = albumId;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

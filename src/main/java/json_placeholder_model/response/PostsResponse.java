@@ -21,4 +21,9 @@ public class PostsResponse {
         return stringJoiner.toString();
     }
 
+    public List<PostResponse> getPosts() {
+        return posts;
+    }
+
+
 }
