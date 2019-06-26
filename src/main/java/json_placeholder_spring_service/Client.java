@@ -1,8 +1,10 @@
 package json_placeholder_spring_service;
 
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Component
 public class Client {
 
     private RestTemplate restTemplate;

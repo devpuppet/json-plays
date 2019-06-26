@@ -2,7 +2,9 @@ package gson_json.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JsonHelper {
 
     GsonBuilder builder;

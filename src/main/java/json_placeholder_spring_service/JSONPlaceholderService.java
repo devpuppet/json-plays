@@ -4,6 +4,7 @@ import json_placeholder_model.request.PostRequest;
 import json_placeholder_model.response.PhotoResponse;
 import json_placeholder_model.response.PostResponse;
 import json_placeholder_model.response.PostsResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
@@ -14,7 +15,8 @@ public class JSONPlaceholderService {
     private static final String PHOTO_RESOURCE_URL =
             "https://jsonplaceholder.typicode.com/photos/";
 
-    private Client client = new Client();
+    @Autowired
+    private Client client;
 
     public PostResponse getPost(String postId) {
         ResponseEntity<PostResponse> response = client.sendRequest(POST_RESOURCE_URL + postId,
