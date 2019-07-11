@@ -1,4 +1,4 @@
-package spring.exercise_classes;
+package spring.exercise_classes.component_scope;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
