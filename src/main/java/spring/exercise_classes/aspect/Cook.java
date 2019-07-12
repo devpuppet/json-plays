@@ -1,10 +1,14 @@
 package spring.exercise_classes.aspect;
 
 import org.springframework.stereotype.Component;
+import spring.exercise_classes.designators.Dangerous;
+import spring.exercise_classes.designators.MasterChef;
+import spring.exercise_classes.designators.Salary;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@MasterChef
 @Component
 public class Cook implements ICook {
 
@@ -16,6 +20,12 @@ public class Cook implements ICook {
     }
 
     @Override
+    public void getIngredients(int amount) {
+        print("[COOK]: Getting " + amount + " ingredients...");
+    }
+
+    @Override
+    @Dangerous
     public void preparePizza() {
         print("[COOK]: Preparing pizza...");
     }
@@ -42,6 +52,11 @@ public class Cook implements ICook {
     @Override
     public void printErrors() {
         errorList.stream().forEach(e -> System.out.println(e));
+    }
+
+    @Override
+    public void setSalary(Salary salary) {
+        System.out.println("[COOK]: My salary could be better");
     }
 
 }

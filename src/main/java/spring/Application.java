@@ -8,6 +8,7 @@ import spring.exercise_classes.aspect.ICook;
 import spring.exercise_classes.component_scope.Employee;
 import spring.exercise_classes.component_scope.Manager;
 import spring.exercise_classes.component_scope.Person;
+import spring.exercise_classes.designators.Salary;
 
 public class Application {
 
@@ -22,8 +23,9 @@ public class Application {
 
         System.out.println(jsonHelper.parseObjectToJson(emptyPostRequest));
 
-        runComponentScopeExercise();
-        runAspectExcercise();
+        //runComponentScopeExercise();
+        //runAspectExcercise();
+        runAspectDesignatorsExcercise();
     }
 
     private void runComponentScopeExercise() {
@@ -54,6 +56,16 @@ public class Application {
         cook.preparePasta();
         cook.preparePasta();
         cook.printErrors();
+    }
+
+    private void runAspectDesignatorsExcercise() {
+        System.out.println("\n----- Designator Excercise -----");
+
+        ICook cook = context.getBean(ICook.class);
+        cook.getIngredients();
+        cook.getIngredients(5);
+        cook.setSalary(new Salary());
+        cook.preparePizza();
     }
 
 }

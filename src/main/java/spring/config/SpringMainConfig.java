@@ -7,6 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import spring.exercise_classes.aspect.Communication;
 import spring.exercise_classes.aspect.MagazineControl;
+import spring.exercise_classes.designators.Designators;
 
 @Configuration
 @EnableAspectJAutoProxy
@@ -26,6 +27,11 @@ public class SpringMainConfig {
     @Bean
     public Communication communication() {
         return new Communication();
+    }
+
+    @Bean
+    public Designators designators() {
+        return new Designators();
     }
 
 }
