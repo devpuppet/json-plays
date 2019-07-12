@@ -5,6 +5,7 @@ import json_placeholder_model.request.PostRequest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import spring.config.SpringMainConfig;
 import spring.exercise_classes.aspect.ICook;
+import spring.exercise_classes.aspect.extensions.IToast;
 import spring.exercise_classes.component_scope.Employee;
 import spring.exercise_classes.component_scope.Manager;
 import spring.exercise_classes.component_scope.Person;
@@ -21,11 +22,13 @@ public class Application {
 
         PostRequest emptyPostRequest = (PostRequest) context.getBean("defaultEmptyPostRequest");
 
+        System.out.println(emptyPostRequest.getClass().getCanonicalName());
         System.out.println(jsonHelper.parseObjectToJson(emptyPostRequest));
 
         //runComponentScopeExercise();
         //runAspectExcercise();
-        runAspectDesignatorsExcercise();
+        //runAspectDesignatorsExcercise();
+        runClassExtensionWithAspectExcercise();
     }
 
     private void runComponentScopeExercise() {
@@ -66,6 +69,14 @@ public class Application {
         cook.getIngredients(5);
         cook.setSalary(new Salary());
         cook.preparePizza();
+    }
+
+    private void runClassExtensionWithAspectExcercise() {
+        System.out.println("\n----- Extension Excercise -----");
+
+        ICook cook = context.getBean(ICook.class);
+        IToast extendedCook = (IToast) cook;
+        extendedCook.prepareToast();
     }
 
 }

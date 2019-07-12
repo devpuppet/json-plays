@@ -7,6 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import spring.exercise_classes.aspect.Communication;
 import spring.exercise_classes.aspect.MagazineControl;
+import spring.exercise_classes.aspect.extensions.ToastAspect;
 import spring.exercise_classes.designators.Designators;
 
 @Configuration
@@ -33,5 +34,8 @@ public class SpringMainConfig {
     public Designators designators() {
         return new Designators();
     }
+
+    @Bean
+    public ToastAspect toastAspect() { return new ToastAspect(); }
 
 }
